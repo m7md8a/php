@@ -1,0 +1,33 @@
+let app = angular.module('App',[])
+      app.controller('hamo', function($scope , $http){
+      
+     // $scope.po = "Mohamed";
+          
+          
+          if (localStorage.getItem("langWebSite") == null) {
+          
+          localStorage.setItem("langWebSite" , "ar")
+          
+          }
+          
+          $('button').click(function (){
+          
+          localStorage.setItem("langWebSite" , $(this).attr("data-lang"))
+          
+          
+          })
+          
+          
+          
+	      $scope.lang = [];
+	      $http.get("ar.json")
+	      .then(function(resp) {
+		      $scope.lang = resp.data;
+	      }, function(err) {
+		      alert('No Mobile Data ..!'+err);
+	      });
+	      
+          
+          
+          
+      })
